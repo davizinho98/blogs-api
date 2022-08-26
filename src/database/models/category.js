@@ -9,9 +9,9 @@ const Category = (sequelize, DataTypes) => {
   );
 
   Category.associate = (models) => {
-    models.Category.belongsToMany(models.PostCategory, {
+    models.Category.hasMany(models.PostCategory, {
       foreignKey: 'categoryId',
-      as: 'categories'
+      as: 'categories',
     });
   };
 
