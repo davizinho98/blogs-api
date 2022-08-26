@@ -9,8 +9,6 @@ const BlogPost = (sequelize, DataTypes) => {
     }, 
     {
       timestamps: false,
-      /* tableName: 'BlogPosts', */
-      // underscored: true,
     }
   );
 
