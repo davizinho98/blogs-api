@@ -6,6 +6,16 @@ const getUsers = async (request, response) => {
   response.status(200).json(users);
 };
 
+const getUserById = async (request, response) => {
+  const { message, code } = await userService.getUserById(request.params);
+
+  if (!message) {
+    response.status(code).json({ message: 'User does not exist' });
+  }
+
+  response.status(code).json(message);
+};
+
 const createUser = async (request, response) => {
   try {
     const token = await userService.createUser(request.body);
@@ -16,4 +26,4 @@ const createUser = async (request, response) => {
   }
 };
 
-module.exports = { createUser, getUsers };
+module.exports = { createUser, getUsers, getUserById };

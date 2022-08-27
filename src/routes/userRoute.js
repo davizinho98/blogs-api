@@ -8,6 +8,8 @@ const validateToken = require('../middlewares/validateToken');
 
 router.get('/', validateToken, userController.getUsers);
 
+router.get('/:id', validateToken, userController.getUserById);
+
 router.post('/', validateDataCreateUser, userController.createUser);
 
 module.exports = router;

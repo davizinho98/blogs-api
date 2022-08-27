@@ -9,6 +9,19 @@ const getUsers = async () => {
   return users;
 };
 
+const getUserById = async ({ id }) => {
+  const user = await User.findOne({
+    where: { id },
+    attributes: ['id', 'displayName', 'email', 'image'],
+  });
+
+  if (!user) {
+    return { code: 404 };
+  }
+
+  return { message: user, code: 200 };
+};
+
 const createUser = async ({ displayName, email, password, image }) => {
   try {
     const user = await User.create({ displayName, email, password, image });
@@ -22,4 +35,4 @@ const createUser = async ({ displayName, email, password, image }) => {
   }
 };
 
-module.exports = { createUser, getUsers };
+module.exports = { createUser, getUsers, getUserById };
