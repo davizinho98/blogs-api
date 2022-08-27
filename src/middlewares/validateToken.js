@@ -16,15 +16,11 @@ const validateToken = async (request, response, next) => {
     const user = await User
       .findOne({ where: displayName });
 
-    if (!user) {
-      return response.status(401).json({ message: 'Expired or invalid token' });
-    }
-
     request.user = user;
 
     next();
   } catch (error) {
-    return response.status(401).json({ message: error.message });
+      return response.status(401).json({ message: 'Expired or invalid token' });
   }
 };
 
