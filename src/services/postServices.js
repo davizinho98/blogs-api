@@ -42,7 +42,6 @@ const createPost = async ({ title, content, categoryIds }, { id: userId }) => {
 };
 
 const updatePost = async ({ title, content }, { id }, user) => {
-  console.log('oi', id, 'oiii', user);
   const post = await BlogPost.findOne({ where: { id } });
   if (!post) {
     return null;
