@@ -41,4 +41,26 @@ const createPost = async ({ title, content, categoryIds }, { id: userId }) => {
   return post;
 };
 
-module.exports = { createPost, getPosts, getPostById };
+const updatePost = async ({ title, content }, { id }, user) => {
+  console.log('oi', id, 'oiii', user);
+  const post = await BlogPost.findOne({ where: { id } });
+  if (!post) {
+    return null;
+  }
+  if (post.userId !== user.id) {
+    return null;
+  }
+
+  await BlogPost.update(
+    { title, content },
+    { where: { id } },
+  );
+
+  const postUpdated = await BlogPost.findOne({
+    where: { id },
+    include: ARRAY_INCLUDES });
+
+  return postUpdated;
+};
+
+module.exports = { createPost, getPosts, getPostById, updatePost };

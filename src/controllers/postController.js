@@ -22,4 +22,12 @@ const createPost = async (request, response) => {
   response.status(201).json(post);
 };
 
-module.exports = { createPost, getPosts, getPostById };
+const updatePost = async (request, response) => {
+  const post = await postServices.updatePost(request.body, request.params, request.user);
+  if (!post) {
+    return response.status(401).json({ message: 'Unauthorized user' });
+  }
+  response.status(200).json(post);
+};
+
+module.exports = { createPost, getPosts, getPostById, updatePost };
