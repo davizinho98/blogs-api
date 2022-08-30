@@ -11,11 +11,9 @@ const validateToken = async (request, response, next) => {
   }
 
   try {
-    const { displayName } = jwt.verify(token, JWT_SECRET);
-
-    const user = await User
-      .findOne({ where: displayName });
-
+    const { id } = jwt.verify(token, JWT_SECRET).data;
+    const user = await User.findByPk(id);
+    
     request.user = user;
 
     next();
