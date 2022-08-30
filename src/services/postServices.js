@@ -13,6 +13,19 @@ const getPosts = async () => {
   return posts;
 };
 
+const getPostById = async ({ id }) => {
+  const post = await BlogPost.findOne({
+    where: { id },
+    include: ARRAY_INCLUDES,
+  });
+
+  if (!post) {
+    return null;
+  }
+
+  return post;
+};
+
 const createPost = async ({ title, content, categoryIds }, { id: userId }) => {
   const bool = await areThereCategories(categoryIds);
   if (!bool) {
@@ -28,4 +41,4 @@ const createPost = async ({ title, content, categoryIds }, { id: userId }) => {
   return post;
 };
 
-module.exports = { createPost, getPosts };
+module.exports = { createPost, getPosts, getPostById };

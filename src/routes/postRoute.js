@@ -9,5 +9,6 @@ const validateDataCreatePost = require('../middlewares/validateDataCreatePost');
 
 router.get('/', validateToken, postController.getPosts);
 router.post('/', validateToken, validateDataCreatePost, postController.createPost);
+router.get('/:id', validateToken, postController.getPostById);
 
 module.exports = router;
