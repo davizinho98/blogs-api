@@ -62,4 +62,20 @@ const updatePost = async ({ title, content }, { id }, user) => {
   return postUpdated;
 };
 
-module.exports = { createPost, getPosts, getPostById, updatePost };
+const deletePost = async ({ id }, user) => {
+  const post = await BlogPost.findOne({ where: { id } });
+
+  if (!post) {
+    return null;
+  }
+
+  if (post.userId !== user.id) {
+    return 'unauthorized';
+  }
+
+  await BlogPost.destroy({ where: { id } });
+
+  return true;
+};
+
+module.exports = { createPost, getPosts, getPostById, updatePost, deletePost };
