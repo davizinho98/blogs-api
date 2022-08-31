@@ -14,6 +14,12 @@ const getPostById = async (request, response) => {
   response.status(200).json(post);
 };
 
+const getPostsBySearch = async (request, response) => {
+  const posts = await postServices.getPostsBySearch(request.query);
+
+  response.status(200).json(posts);
+};
+
 const createPost = async (request, response) => {
   const post = await postServices.createPost(request.body, request.user);
   if (!post) {
@@ -44,4 +50,4 @@ const deletePost = async (request, response) => {
   response.status(204).end();
 };
 
-module.exports = { createPost, getPosts, getPostById, updatePost, deletePost };
+module.exports = { createPost, getPosts, getPostById, updatePost, deletePost, getPostsBySearch };

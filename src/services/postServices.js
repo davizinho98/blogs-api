@@ -1,3 +1,5 @@
+const Sequelize = require('sequelize');
+
 const { BlogPost, User, Category, PostCategory } = require('../database/models');
 
 const { areThereCategories } = require('./helpers/areThereCategories');
@@ -24,6 +26,21 @@ const getPostById = async ({ id }) => {
   }
 
   return post;
+};
+
+const getPostsBySearch = async ({ q }) => {
+  const { Op } = Sequelize;
+  const posts = await BlogPost.findAll({
+    where: {
+      [Op.or]: [
+        { title: { [Op.like]: `%${q}%` } },
+        { content: { [Op.like]: `%${q}%` } },
+      ],
+    },
+    include: ARRAY_INCLUDES,
+  });
+
+  return posts;
 };
 
 const createPost = async ({ title, content, categoryIds }, { id: userId }) => {
@@ -78,4 +95,4 @@ const deletePost = async ({ id }, user) => {
   return true;
 };
 
-module.exports = { createPost, getPosts, getPostById, updatePost, deletePost };
+module.exports = { createPost, getPosts, getPostById, updatePost, deletePost, getPostsBySearch };
