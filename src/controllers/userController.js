@@ -26,4 +26,14 @@ const createUser = async (request, response) => {
   }
 };
 
-module.exports = { createUser, getUsers, getUserById };
+const deleteUser = async (request, response) => {
+  const user = await userService.deleteUser(request.user);
+
+  if (!user) {
+    return response.status(401).json({ message: 'User does not exist' });
+  }
+
+  response.status(204).end();
+};
+
+module.exports = { createUser, getUsers, getUserById, deleteUser };

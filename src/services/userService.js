@@ -35,4 +35,15 @@ const createUser = async ({ displayName, email, password, image }) => {
   }
 };
 
-module.exports = { createUser, getUsers, getUserById };
+const deleteUser = async (user) => {
+  const userDB = await User.findByPk(user.id);
+  if (!userDB) {
+    return null;
+  }
+
+  await User.destroy({ where: { id: user.id } });
+
+  return true;
+};
+
+module.exports = { createUser, getUsers, getUserById, deleteUser };
