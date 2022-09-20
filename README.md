@@ -4,7 +4,7 @@ Projeto da [Trybe](https://www.betrybe.com/ "Trybe") - API para gestão de um bl
 
 ## Descrição
 
-Foi desenvolvido uma API de um CRUD (Create, Read, Update e Delete) de um blog (users e posts), utilizando o ORM Sequelize para realizar buscar e inserção no banco de dados.
+Foi desenvolvido uma API de um CRUD (Create, Read, Update e Delete) de um blog (users e posts), utilizando o ORM Sequelize para realizar buscas e inserção no banco de dados.
 
 ## Tecnologias
 
