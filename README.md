@@ -51,7 +51,7 @@ Configure um arquivo `.env` na raíz do projeto com as seguintes variáveis de a
 
 Popule o banco de dados com o comando:
 
-`npm run restore`
+`npm run prestart`
 
 Inicie a aplicação com o comando:
 
