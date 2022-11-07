@@ -43,10 +43,11 @@ Certifique-se de que você tenha o `node` instalado e uma conexão com o banco d
 
 Configure um arquivo `.env` na raíz do projeto com as seguintes variáveis de ambiente:
 
-        MYSQL_HOST=localhost
-        MYSQL_PORT=3306
-        MYSQL_USER=root
-        MYSQL_PASSWORD=password
+            MYSQL_HOST=localhost
+            MYSQL_PORT=3306
+            MYSQL_USER=root
+            MYSQL_PASSWORD=password
+            JWT_SECRET=mysecret
 
 Popule o banco de dados com o comando:
 
